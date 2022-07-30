@@ -6,7 +6,8 @@ export const usePokemonPaginated = () => {
 
   const loadPokemons = async () => {
     const resp = await pokemonApi.get(nextPageUrl.current);
-    console.log(resp.data);
+
+    nextPageUrl.current = resp.data.next;
   };
 
   useEffect(() => {
