@@ -6,9 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ImageColors from 'react-native-image-colors';
+
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import { FadeInImage } from './FadeInImage';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -17,12 +20,26 @@ interface Props {
 }
 
 export const PokemonCard = ({ pokemon }: Props) => {
+  const [bgColor, setBgColor] = useState('grey');
+
+  useEffect(() => {
+    ImageColors.getColors(pokemon.picture, {
+      fallback: 'grey',
+      cache: true,
+    }).then(colors => {
+      colors.platform === 'android'
+        ? setBgColor(colors.dominant || 'grey')
+        : setBgColor(colors.background || 'grey');
+    });
+  }, []);
+
   return (
     <TouchableOpacity activeOpacity={0.9}>
       <View
         style={{
           ...styles.cardContainer,
           width: windowWidth * 0.4,
+          backgroundColor: bgColor,
         }}>
         <Text style={styles.name}>
           {pokemon.name}
@@ -46,9 +63,8 @@ export const PokemonCard = ({ pokemon }: Props) => {
 const styles = StyleSheet.create({
   cardContainer: {
     marginHorizontal: 10,
-    backgroundColor: 'red',
-    height: 120,
-    width: 160,
+    height: 140,
+    width: 120,
     marginBottom: 25,
     borderRadius: 10,
     shadowColor: '#000',
@@ -61,7 +77,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   name: {
-    color: 'white',
+    color: 'black',
+    opacity: 0.7,
     fontSize: 20,
     fontWeight: 'bold',
     top: 20,
