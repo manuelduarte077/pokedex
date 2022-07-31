@@ -1,9 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../screens/home/HomeScreen';
-import DetailScreen from '../screens/pokemon/DetailScreen';
+import PokemonScreen from '../screens/pokemon/PokemonScreen';
+import { SimplePokemon } from '../interfaces/pokemonInterfaces';
+import { DetailScreen } from '../screens/detail/DetailScreen';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  Home: undefined;
+  DetailScreen: { simplePokemon: SimplePokemon; color: string };
+};
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigator = () => {
   return (
@@ -14,8 +20,8 @@ export const Navigator = () => {
           backgroundColor: 'white',
         },
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="Home" component={PokemonScreen} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
     </Stack.Navigator>
   );
 };
