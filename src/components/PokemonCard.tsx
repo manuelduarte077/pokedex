@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ImageColors from 'react-native-image-colors';
 
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
@@ -21,16 +21,23 @@ interface Props {
 
 export const PokemonCard = ({ pokemon }: Props) => {
   const [bgColor, setBgColor] = useState('grey');
+  const isMounted = useRef(true);
 
   useEffect(() => {
     ImageColors.getColors(pokemon.picture, {
       fallback: 'grey',
       cache: true,
     }).then(colors => {
+      if (!isMounted.current) return;
+
       colors.platform === 'android'
         ? setBgColor(colors.dominant || 'grey')
         : setBgColor(colors.background || 'grey');
     });
+
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   return (
