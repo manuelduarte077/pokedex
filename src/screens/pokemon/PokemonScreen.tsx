@@ -8,7 +8,6 @@ import { PokemonCard } from '../../components/PokemonCard';
 
 const PokemonScreen = () => {
   const { top } = useSafeAreaInsets();
-
   const { simplePokemonList, loadPokemons } = usePokemonPaginated();
 
   return (
