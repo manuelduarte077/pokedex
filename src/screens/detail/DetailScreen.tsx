@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FadeInImage } from '../../components/FadeInImage';
 import { usePokemon } from '../../hooks/usePokemon';
+import { PokemonDetails } from '../../components/PokemonDetails';
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
@@ -62,9 +63,13 @@ export const DetailScreen = ({ navigation, route }: Props) => {
       </View>
 
       {/* Detalles y Loading */}
-      <View style={styles.loadingIndicator}>
-        <ActivityIndicator color={color} size={50} />
-      </View>
+      {isLoading ? (
+        <View style={styles.loadingIndicator}>
+          <ActivityIndicator color={color} size={50} />
+        </View>
+      ) : (
+        <PokemonDetails pokemon={pokemon} />
+      )}
     </View>
   );
 };
