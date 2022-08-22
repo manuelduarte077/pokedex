@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Platform, StyleProp, ViewStyle } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export const SearchInput = () => {
+interface Props {
+  style?: StyleProp<ViewStyle>;
+}
+
+export const SearchInput = ({ style }: Props) => {
   return (
     <View>
-      <View style={styles.textBackground}>
+      <View
+        style={{
+          ...styles.textBackground,
+          ...(style as any),
+        }}>
         <TextInput
           placeholder="Pokemon Search"
           style={{ ...styles.textInput, top: Platform.OS === 'ios' ? 0 : 2 }}
@@ -37,7 +45,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
 
