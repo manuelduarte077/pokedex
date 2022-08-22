@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import PokemonScreen from '../screens/pokemon/PokemonScreen';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import { DetailScreen } from '../screens/detail/DetailScreen';

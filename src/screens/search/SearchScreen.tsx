@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { View, Platform, FlatList, Text, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import Loading from '../../components/Loading';
 import { PokemonCard } from '../../components/PokemonCard';
 import { SearchInput } from '../../components/SearchInput';

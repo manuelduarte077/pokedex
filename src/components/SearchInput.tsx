@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Platform, StyleProp, ViewStyle } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { TextInput } from 'react-native-gesture-handler';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
