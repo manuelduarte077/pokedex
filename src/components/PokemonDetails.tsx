@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { PokemonFull, Sprites } from '../interfaces/pokemonInterfaces';
+
 import { FadeInImage } from './FadeInImage';
+
+import { PokemonFull } from '../interfaces/pokemonInterfaces';
 
 interface Props {
   pokemon: PokemonFull;
